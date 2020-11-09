@@ -27,6 +27,20 @@ class CustomUserAdmin(UserAdmin):
         ),
     )
 
+    list_filter = UserAdmin.list_filter + ("superhost",)
+
+    list_display = (
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "is_active",
+        "language",
+        "currency",
+        "superhost",
+        "is_staff",
+        "is_superuser",
+    )
     # 지난 시간에 했던 예제 admin.ModelAdmin을 상속받아 진행했었다.
     # list_display = ("username", "gender", "language", "currency", "superhost")
     # list_filter = (
