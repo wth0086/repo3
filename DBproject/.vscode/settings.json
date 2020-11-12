@@ -2,5 +2,8 @@
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=88"
+    ],
     "python.pythonPath": "C:\\Users\\wth00\\.virtualenvs\\DBproject-g_03Gi8T\\Scripts\\python.exe"
 }
