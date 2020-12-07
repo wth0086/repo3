@@ -1,0 +1,22 @@
+<! DOCTYPE html>
+
+
+<html>
+    <head>
+        <meta http-equiv="content-Type" content="text/html"; charset=UFF-8>
+        <title>Login</title>
+    </head>
+
+    <body>
+        <p>Employee Login</p>
+
+        <form action="{url 'employees:state'}" method="post">
+            {% csrf_token %}
+            ID : <input type="text" name="ID"></br>
+            PW : <input type="password" name="PW"></br>
+            <input type="submit" value="로그인"><input type="button" value = "회원가입" onclick="location.href='http://127.0.0.1:8000/employees/Information'"></br>
+
+        </form>
+    </body>
+
+</html>

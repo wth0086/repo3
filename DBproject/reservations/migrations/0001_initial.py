@@ -9,11 +9,12 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('rooms', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Amenity',
+            name='AdditionalService',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateTimeField(auto_now_add=True)),
@@ -21,46 +22,35 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=80)),
             ],
             options={
-                'verbose_name_plural': 'Amenities',
-            },
-        ),
-        migrations.CreateModel(
-            name='BedType',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('updated', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(max_length=80)),
-            ],
-            options={
-                'verbose_name': 'Bed Type',
+                'verbose_name': 'Additional Service',
                 'ordering': ['name'],
             },
         ),
         migrations.CreateModel(
-            name='RoomType',
+            name='BookedDay',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(max_length=80)),
+                ('day', models.DateField(null=True)),
+                ('count', models.IntegerField(default=0)),
             ],
-            options={
-                'verbose_name': 'Room Type',
-                'ordering': ['name'],
-            },
         ),
         migrations.CreateModel(
-            name='Room',
+            name='Reservation',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('room_number', models.CharField(max_length=5)),
-                ('room_state', models.BooleanField(default=True)),
-                ('amenities', models.ManyToManyField(blank=True, related_name='rooms', to='rooms.Amenity')),
-                ('bed_type', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rooms', to='rooms.BedType')),
-                ('room_type', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='rooms', to='rooms.RoomType')),
+                ('checkin', models.DateField()),
+                ('checkout', models.DateField()),
+                ('card', models.CharField(blank=True, choices=[('삼성카드', '삼성카드'), ('국민카드', '국민카드'), ('롯데카드', '롯데카드')], max_length=20)),
+                ('cardNum', models.IntegerField(blank=True, null=True)),
+                ('cardExpYear', models.CharField(default='****', max_length=4)),
+                ('cardExpMonth', models.CharField(default='**', max_length=2)),
+                ('additionalService', models.ManyToManyField(blank=True, to='reservations.AdditionalService')),
+                ('bedtype', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='reservation', to='rooms.BedType')),
+                ('roomtype', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='reservation', to='rooms.RoomType')),
             ],
             options={
                 'abstract': False,

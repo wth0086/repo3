@@ -1,0 +1,38 @@
+<! DOCTYPE html>
+
+
+<html>
+    <head>
+        <meta http-equiv="content-Type" content="text/html"; charset=UFF-8>
+        <title>E-Table</title>
+    </head>
+
+    <body>
+        <p>Employees Table</p>
+
+        {% if Employee_list %}
+        <ol>
+            <table border="1">
+                <th>ID</th> <th>이름</th> <th>업무 종류</th> <th>휴대폰 번호</th> <th>누적 업무</th>
+                <tr>
+                    {% for e in Employee_list %}
+                    <td><a href="{% url 'employees:information' e.e_ID %}">{{e.e_ID}}</a></td>
+                    <td>{{e.e_name}}</td>
+                    <td>{{e.e_work_type}}</td>
+                    <td>{{e.e_phone_number}}</td>
+                    <td>&nbsp;<button href="#none">추가</button><button href="#none">제거</button></td>
+                </tr>
+            {% endfor %}
+            </table>
+        </ol>
+        {% else %}
+            <p>Employee : 0</p>
+        {% endif %}
+
+        </br>
+
+        <a href="{% url 'employees:reg' %}">새로운 직원등록</a>
+    
+
+    </body>
+</html>

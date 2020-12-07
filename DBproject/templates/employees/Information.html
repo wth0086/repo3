@@ -1,0 +1,34 @@
+<! DOCTYPE html>
+
+
+<html>
+    <head>
+        <meta http-equiv="content-Type" content="text/html"; charset=UFF-8>
+        <title>E-Informaton</title>
+    </head>
+
+    <body>
+        <p>Employee Information</p>
+
+        {% if Employee_info %}
+            ID : {{Employee_info.e_ID}}</br>
+            name : {{Employee_info.e_name}}</br>
+            gender : {{Employee_info.e_gender}}</br>
+            work_type : {{Employee_info.e_work_type}}</br>
+            birthdate : {{Employee_info.e_birthdate}}</br>
+            address : {{Employee_info.e_address}}</br>
+            phone_number : {{Employee_info.e_phone_number}}</br>
+        {% else %}
+            <p> Employee : 0 </p>
+        {% endif %}
+
+        </br>
+
+        <a href="{% url 'employees:Modify' Employee_info.e_ID %}">수정</a>
+        <a href="{% url 'employees:Delete' Employee_info.e_ID %}">삭제</a>
+        <a href="{% url 'employees:emAll' %}">직원 리스트</a>
+        <a href="{% url 'employees:reg' %}">새로운 직원등록</a>
+    
+
+    </body>
+</html>

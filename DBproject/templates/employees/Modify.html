@@ -1,0 +1,52 @@
+<! DOCTYPE html>
+
+
+<html>
+    <head>
+        <meta http-equiv="content-Type" content="text/html"; charset=UFF-8>
+        <title>E-Modify</title>
+    </head>
+
+    <script> // 비밀번호를 모르면 수정이 불가능하게 만들고 싶은데 실패 ㅠ
+        function checkForm(){
+            if (PW != Employee_info.e_PW){
+                alert('비밀번호가 일치하지 않습니다.')
+                return false
+            }
+
+            return true
+        }
+    </script>
+
+    <body>
+        <p>Modify Employee</p>
+
+        {% if Employee_info %}
+            <form action="{% url 'employees:modCon' %}" onsubmit="return checkForm" method="post">
+                {% csrf_token %}
+                ID : {{Employee_info.e_ID}}</br>
+                <input type="hidden" name="ID" value={{Employee_info.e_ID}}>
+                PW : <input type="password" name="PW"></br>
+                name : <input type="text" name="name" value={{Employee_info.e_name}}></br>
+                gender : <input type="radio" name="gender" value="male">남성
+                        <input type="radio" name="gender" value="female">여성</br>
+                work_type : <input type="radio" name="work_type" value="houseman">하우스맨
+                            <input type="radio" name="work_type" value="londry">론드리
+                            <input type="radio" name="work_type" value="operator">오퍼레이터
+                            <input type="radio" name="work_type" value="reception">리셉션
+                            <input type="radio" name="work_type" value="reservation">예약부
+                            <input type="radio" name="work_type" value="roommaid">룸메이드
+                            <input type="radio" name="work_type" value="other">그 외</br>
+                birthdate : <input type="date" name="birthdate" value={{Employee_info.e_birthdate}}></br>
+                address : <input type="text" name="address" value={{Employee_info.e_address}}></br>
+                phone_number : <input type="text" name="phone_number" value={{Employee_info.e_phone_number}}></br>
+                <input type="submit" value="수정"></br>
+            </form>
+        {% else %}
+            <p>Employee : 0</p>
+        {% endif %}
+
+        
+    </body>
+
+</html>

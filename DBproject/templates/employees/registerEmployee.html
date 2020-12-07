@@ -1,0 +1,34 @@
+<! DOCTYPE html>
+
+
+<html>
+    <head>
+        <meta http-equiv="content-Type" content="text/html"; charset=UFF-8>
+        <title>E-Register</title>
+    </head>
+
+    <body>
+        <p>Register Employee</p>
+
+        <form action="{% url 'employees:regCon' %}" method="post">
+            {% csrf_token %}
+            ID : <input type="text" name="ID"></br>
+            PW : <input type="password" name="PW"></br>
+            name : <input type="text" name="name"></br>
+            gender : <input type="radio" name="gender" value="male">남성
+                    <input type="radio" name="gender" value="female">여성</br>
+            work_type : <input type="radio" name="work_type" value="houseman">하우스맨
+                        <input type="radio" name="work_type" value="londry">론드리
+                        <input type="radio" name="work_type" value="operator">오퍼레이터
+                        <input type="radio" name="work_type" value="reception">리셉션
+                        <input type="radio" name="work_type" value="reservation">예약부
+                        <input type="radio" name="work_type" value="roommaid">룸메이드
+                        <input type="radio" name="work_type" value="other">그 외</br>
+            birthdate : <input type="date" name="birthdate"></br>
+            address : <input type="text" name="address"></br>
+            phone_number : <input type="text" name="phone_number"></br>
+            <input type="submit" value="등록"></br>
+        </form>
+    </body>
+
+</html>

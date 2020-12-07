@@ -1,0 +1,163 @@
+{% load static %}
+{% block content %}
+<form method="GET" action="{% url "reservations:reservation" %}">
+    {{form.as_p}}
+    <button>Search</button>
+</form>
+{% endblock content %}
+
+{% if result %}
+<h3>Result</h3>
+{% for room_type in result %}
+{% if room_type == "Deluxe" %}
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        div {
+            float: left
+        }
+
+        .deluxe .img {
+            margin-top: 10pt;
+            margin-right: 20pt;
+        }
+
+        .deluxe .reserve {
+            margin-right: 100pt;
+        }
+
+        .deluxe .info {
+            margin-right: 20pt;
+        }
+
+        .deluxe .info h1 {
+            margin-top: 100pt;
+            font-size: 17pt;
+        }
+
+        .deluxe .info h2 {
+            font-size: 8pt;
+            text-align: right;
+        }
+
+        .deluxe .reserve h1 {
+            font-size: 20pt;
+            margin-bottom: 20pt;
+        }
+
+        .deluxe .reserve h2,
+        h3 {
+            font-size: 11pt;
+            margin-bottom: 20pt;
+        }
+
+        .deluxe .reserve h3 {
+            color: sandybrown;
+        }
+
+        button {
+            margin-top: 100pt;
+            background-color: brown;
+            color: white;
+            width: 80pt;
+            height: 25pt;
+            font-size: 12pt;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="deluxe">
+        <div class="img">
+            <img src="{% static "images/Deluxe.jpg" %}" />
+        </div>
+        <div class="reserve">
+            <h1>Deluxe</h1>
+            <h2>객실크기 : 36m<sup>2</sup></h2>
+            <h2>침대타입 : 더블(킹 사이즈),트윈</h2>
+            <h3>객실 자세히 보기 +</h3>
+        </div>
+        <div class="info">
+            <h1>380,000 원 ~</h1>
+            <h2>1박</h2>
+        </div>
+        <div>
+            <button type="button" onclick="location.href='reservate'">Reserve</button>
+        </div>
+    </div>
+</body>
+{% endif %}
+{% if room_type == 'Business' %}
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        div {
+            float: left
+        }
+
+        .business .img {
+            margin-top: 10pt;
+            margin-right: 20pt;
+        }
+
+        .business .reserve {
+            margin-right: 100pt;
+        }
+
+        .business .info {
+            margin-right: 20pt;
+        }
+
+        .business .info h1 {
+            margin-top: 100pt;
+            font-size: 17pt;
+        }
+
+        .business .info h2 {
+            font-size: 8pt;
+            text-align: right;
+        }
+
+        .business .reserve h1 {
+            font-size: 20pt;
+            margin-bottom: 20pt;
+        }
+
+        .business .reserve h2,
+        h3 {
+            font-size: 11pt;
+            margin-bottom: 20pt;
+        }
+
+        .business .reserve h3 {
+            color: sandaybrown;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="business">
+        <div class="img">
+            <img src="{% static "images/Business.jpg" %}" />
+        </div>
+        <div class="reserve">
+            <h1>Business</h1>
+            <h2>객실크기 : 43m<sup>2</sup></h2>
+            <h2>침대타입 : 더블(킹 사이즈),트윈</h2>
+            <h3>객실 자세히 보기 +</h3>
+        </div>
+        <div class="info">
+            <h1>430,000 원 ~</h1>
+            <h2>1박</h2>
+        </div>
+        <div>
+            <button type="button" onclick="location.href='reservate'">Reserve</button>
+        </div>
+    </div>
+
+</body>
+{% endif %}
+{% endfor %}
+{% endif %}
